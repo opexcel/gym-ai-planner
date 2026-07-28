@@ -71,7 +71,8 @@ export default function Onboarding() {
   }
 
   async function handleQuestionnaire(e: React.SubmitEvent) {
-    e.preventDefault();
+  e.preventDefault();
+  console.log("🚀 handleQuestionnaire called");
 
     const profile: Omit<UserProfile, "userId" | "updatedAt"> = {
       goal: formData.goal as UserProfile["goal"],
