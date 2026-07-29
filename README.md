@@ -6,6 +6,22 @@ Users complete a short onboarding questionnaire and receive a personalized train
 
 ---
 
+## Screenshots
+
+### Home Page
+
+![Home Page](screenshots/home.png)
+
+### Onboarding Questionnaire
+
+![Onboarding Questionnaire](screenshots/onboarding.png)
+
+### Generated Training Plan
+
+![Generated Training Plan](screenshots/training-plan.png)
+
+---
+
 ## Features
 
 - User authentication
