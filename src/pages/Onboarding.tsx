@@ -114,6 +114,12 @@ export default function Onboarding() {
               <p className="text-[var(--color-muted)] mb-6">
                 Help us create the perfect plan for you.
               </p>
+               {error && (
+                <div className="mb-4 rounded-md border border-red-500 bg-red-50 p-3 text-red-700">
+                  {error}
+                </div>
+               )}
+
               <form onSubmit={handleQuestionnaire} className="space-y-5">
                 <Select
                   id="goal"
