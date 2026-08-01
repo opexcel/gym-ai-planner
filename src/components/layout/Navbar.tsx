@@ -9,6 +9,7 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   async function handleSignOut() {
+    console.log("CUSTOM SIGN OUT CLICKED");
     try {
       await signOut();
 
