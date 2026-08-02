@@ -1,12 +1,11 @@
 import { Dumbbell } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from "../ui/Button";
 import { useAuth } from "../../context/AuthContext";
 import { signOut } from "../../lib/auth";
 
 export default function Navbar() {
   const { user } = useAuth();
-  const navigate = useNavigate();
 
   async function handleSignOut() {
     console.log("CUSTOM SIGN OUT CLICKED");
