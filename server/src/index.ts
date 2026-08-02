@@ -17,7 +17,11 @@ app.use(express.json());
 //API Routes
 app.use("/api/profile", profileRouter);
 app.use("/api/plan", planRouter);
-
+app.get("/api/debug-db", (_req, res) => {
+  res.json({
+    database: process.env.DATABASE_URL,
+  });
+});
 app.listen(PORT, () => {
   console.log(`Server running on port: ${PORT}`);
 });
