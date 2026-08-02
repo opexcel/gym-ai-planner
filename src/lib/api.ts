@@ -1,5 +1,7 @@
 import type { UserProfile } from "../types";
-const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
+const BASE_URL = import.meta.env.DEV
+  ? "http://localhost:3001"
+  : "https://api.emiratrend.com";
 
 async function post(path: string, body: object) {
   const res = await fetch(`${BASE_URL}/api${path}`, {
