@@ -7,6 +7,7 @@ export const planRouter = Router();
 planRouter.post("/generate", async (req: Request, res: Response) => {
   try {
     const { userId } = req.body;
+    console.log("GENERATE userId:", userId);
 
     if (!userId) {
       return res.status(400).json({ error: "User ID is required" });
@@ -45,6 +46,7 @@ planRouter.post("/generate", async (req: Request, res: Response) => {
     const planText = JSON.stringify(planJson, null, 2);
 
     const newPlan = await prisma.training_plans.create({
+    console.log("PLAN SAVED:", newPlan.id, newPlan.user_id);  
       data: {
         user_id: userId,
         plan_json: planJson as any,
@@ -67,6 +69,7 @@ planRouter.post("/generate", async (req: Request, res: Response) => {
 planRouter.get("/current", async (req: Request, res: Response) => {
   try {
     const userId = req.query.userId as string;
+    console.log("PLAN SAVED:", newPlan.id, newPlan.user_id);
     if (!userId) {
       return res.status(400).json({ error: "User ID is required" });
     }
@@ -76,6 +79,7 @@ planRouter.get("/current", async (req: Request, res: Response) => {
       orderBy: { created_at: "desc" },
     });
 
+    console.log("PLAN FOUND:", !!plan);
     if (!plan) {
       return res.status(404).json({ error: "No plan found" });
     }
