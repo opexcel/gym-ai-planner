@@ -71,7 +71,12 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
       // const profileData =
 
       // Fetch Plan
-      const planData = await api.getCurrentPlan(neonUser.id).catch(() => null);
+      const planData = await api.getCurrentPlan(neonUser.id).catch((err) => {
+        console.error("getCurrentPlan failed", err);
+        return null;
+      });
+
+console.log("planData:", planData);
       if (planData) {
         setPlan({
           id: planData.id,
@@ -82,6 +87,8 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
           version: planData.version,
           createdAt: planData.createdAt,
         });
+        
+        console.log("Plan loaded into React state");
       }
     } catch (error) {
       console.error("Error refreshing data:", error);
@@ -106,7 +113,14 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
       throw new Error("User must be authenticated to generate plan");
     }
 
-    await api.generatePlan(neonUser.id);
+    try {
+      await api.generatePlan(neonUser.id);
+    } catch (err) {
+      console.warn("generatePlan request failed:", err);
+      console.warn("Checking if plan was still created...");
+    }
+
+    // Even if the request failed, check the database.
     await refreshData();
   }
 
